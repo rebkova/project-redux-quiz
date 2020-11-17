@@ -11,9 +11,16 @@ export const CurrentQuestion = () => {
     (state) => state.quiz.questions[state.quiz.currentQuestionIndex]
   );
   
+  // const answer = useSelector(
+  //   (state) => state.quiz.answers[state.quiz.currentQuestionIndex].isCorrect
+  // );
+
+  //fetching the whole array of answers
   const answer = useSelector(
-    (state) => state.quiz.answers[state.quiz.currentQuestionIndex.isCorrect]
+    (state) => state.quiz.answers.find(({questionId}) => question.id === questionId)
   );
+  console.log(answer);
+
   //"activate" dispatch hook
   const dispatch = useDispatch()
 
@@ -21,6 +28,9 @@ export const CurrentQuestion = () => {
   //with question id and answer index to reducer (quiz)
   const handleAnswerButton = (index) => {
     dispatch(quiz.actions.submitAnswer({questionId: question.id, answerIndex: index}))
+    // const userAnswer = answer.find(questionId => question.id === questionId)
+    
+
   }
 
   if (!question) {
@@ -35,8 +45,7 @@ export const CurrentQuestion = () => {
           return <button type="button" key={index} onClick={() => handleAnswerButton(index)}>{answerOption}</button>;
         })}
       </div>
-        <p>{answer}</p>
+      {answer && (answer.answerIndex === answer.question.correctAnswerIndex ? <p>The answer is correct</p> : <p>Fail!</p>)}
     </div>
   );
 };
-
