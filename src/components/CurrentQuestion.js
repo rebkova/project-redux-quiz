@@ -85,6 +85,7 @@ const Container = styled.div`
   `
   const ButtonContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   padding-top: 50px
@@ -119,11 +120,31 @@ const Container = styled.div`
           return <Button type="button" key={index} onClick={() => handleAnswerButton(index)}>{answerOption}</Button>;
         })}
       </ButtonContainer>}
-      {answer && (answer.answerIndex === answer.question.correctAnswerIndex ? <h2>The answer is correct</h2> : <h2>Fail!</h2>)}
+      {answer && (answer.answerIndex === answer.question.correctAnswerIndex ? <lottie-player
+        autoplay
+        loop
+        mode="normal"
+        src={'https://assets2.lottiefiles.com/packages/lf20_9eH8kJ.json'}
+        style={{ height: 100 }}
+      /> : <lottie-player
+        autoplay
+        loop
+        mode="normal"
+        src={'https://assets9.lottiefiles.com/packages/lf20_gO48yV.json'}
+        style={{ height: 100 }}
+      />)}
       {(answer && !quizOver) && <Button type="button" onClick={() => dispatch(quiz.actions.goToNextQuestion())}>Next question</Button>}
       <Progress>You are on question {question.id} of 5.</Progress>    
       {quizOver && <Button type="button" onClick={() => setShowSummary(true)}>Show your result</Button>}
-      {showSummary && <Summary/>}
+      {showSummary && <Summary />}
+      {showSummary && <Button 
+      type='button' 
+      onClick={() => {
+        dispatch(quiz.actions.restart())
+        setShowSummary(false)
+      }}>
+        Restart quiz!
+      </Button>}
     </Container>
   )
 }
