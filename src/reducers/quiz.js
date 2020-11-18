@@ -2,11 +2,41 @@ import { createSlice } from '@reduxjs/toolkit'
 
 // Change these to your own questions!
 const questions = [
-  { id: 1, questionText: 'What is Maks favourite expression for describing "whatever"?', options: ['wosh', 'blablabla', '*whistling sound*', 'Guys - whatever'], correctAnswerIndex: 1, lottie: 'https://assets7.lottiefiles.com/packages/lf20_Zz37yH.json' },
-  { id: 2, questionText: 'Which of the statements is not true for Jennie?', options: ['she founded Kids Hack Club', 'has taken a course in creative writing', 'has been a hammer thrower', 'has completed Ironhack bootcamp'], correctAnswerIndex: 2, lottie: 'https://assets6.lottiefiles.com/private_files/lf30_AGoC3n.json' },
-  { id: 3, questionText: 'Which royalty did Damien meet?', options: ['Prince William', 'Princess Märtha Louise', 'Prince Daniel', 'Prince Joachim'], correctAnswerIndex: 2, lottie: 'https://assets9.lottiefiles.com/packages/lf20_AopHZg.json' },
-  { id: 4, questionText: 'At what company did Poya do his master thesis??', options: ['Adecco', 'Ericsson', 'Tv4', 'Nokoby'], correctAnswerIndex: 2, lottie: 'https://assets2.lottiefiles.com/packages/lf20_eDnQim.json' },
-  { id: 5, questionText: 'Van does not speak one of these languages. Which one?', options: ['Swedish', 'Romanian', 'English', 'Bulgarian'], correctAnswerIndex: 3, lottie: 'https://assets2.lottiefiles.com/packages/lf20_BvVcMG.json' }
+  {
+    id: 1,
+    questionText: 'What is Maks favourite expression for describing "whatever"?',
+    options: ['wosh', 'blablabla', '*whistling sound*', 'Guys - whatever'],
+    correctAnswerIndex: 1,
+    lottie: 'https://assets7.lottiefiles.com/packages/lf20_Zz37yH.json'
+  },
+  { 
+    id: 2, 
+    questionText: 'Which of the statements is not true for Jennie?',
+    options: ['she founded Kids Hack Club', 'has taken a course in creative writing', 'has been a hammer thrower', 'has completed Ironhack bootcamp'],
+    correctAnswerIndex: 2,
+    lottie: 'https://assets6.lottiefiles.com/private_files/lf30_AGoC3n.json'
+  },
+  {
+    id: 3,
+    questionText: 'Which royalty did Damien meet?',
+    options: ['Prince William', 'Princess Märtha Louise', 'Prince Daniel', 'Prince Joachim'],
+    correctAnswerIndex: 2, 
+    lottie: 'https://assets9.lottiefiles.com/packages/lf20_AopHZg.json'
+  },
+  {
+    id: 4,
+    questionText: 'At what company did Poya do his master thesis??',
+    options: ['Adecco', 'Ericsson', 'Tv4', 'Nokoby'],
+    correctAnswerIndex: 2,
+    lottie: 'https://assets2.lottiefiles.com/packages/lf20_eDnQim.json'
+  },
+  { 
+    id: 5,
+    questionText: 'Van does not speak one of these languages. Which one?',
+    options: ['Swedish', 'Romanian', 'English', 'Bulgarian'],
+    correctAnswerIndex: 3,
+    lottie: 'https://assets2.lottiefiles.com/packages/lf20_BvVcMG.json'
+  }
 ]
 
 const initialState = {
@@ -48,7 +78,7 @@ export const quiz = createSlice({
         throw new Error(`You passed answerIndex ${answerIndex}, but it is not in the possible answers array!`)
       }
 
-      if (state.currentQuestionIndex + 1 === state.questions.length) 
+      if (state.currentQuestionIndex + 1 === state.questions.length)
         state.quizOver = true
 
       state.answers.push({
