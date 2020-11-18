@@ -17,7 +17,8 @@ export const CurrentQuestion = () => {
 
   //fetching the whole array of answers
   const answer = useSelector(
-    (state) => state.quiz.answers.find(({questionId}) => question.id === questionId)
+    //(state) => state.quiz.answers.find(({questionId}) => question.id === questionId)
+    (state) => state.quiz.answers[state.quiz.currentQuestionIndex]
   );
   console.log(answer);
 
