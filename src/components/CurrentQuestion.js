@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { quiz } from "reducers/quiz";
 import styled from 'styled-components';
+import "@lottiefiles/lottie-player";
+
+import { Summary } from "components/Summary";
 
 
 export const CurrentQuestion = () => {
@@ -10,6 +13,10 @@ export const CurrentQuestion = () => {
   //set state & initial state
   const question = useSelector(
     (state) => state.quiz.questions[state.quiz.currentQuestionIndex]
+  );
+
+  const quizOver = useSelector(
+    (state) => state.quiz.quizOver
   );
   
   // const answer = useSelector(
@@ -22,7 +29,9 @@ export const CurrentQuestion = () => {
     (state) => state.quiz.answers[state.quiz.currentQuestionIndex]
   );
   console.log(answer);
-  const showSummary = false;
+  const [showSummary, setShowSummary] = useState(false)
+  // let showSummary = false;
+  console.log(answer && !quizOver)
 
   //"activate" dispatch hook
   const dispatch = useDispatch()
@@ -72,24 +81,49 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 100px
+  padding-top: 50px
   `
+  const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px
+  `
+  const Title = styled.h1`
+  color: #222226;
+  margin: 20px;
+  text-align: center;`
+
+  const Progress = styled.h2`
+  color: grey;
+  margin: 20px;
+  text-align: center;
+  font-weight: light;`
 
 
 
   return (
     <Container>
-      <h1>Question: {question.questionText}</h1>
+      <Title>Question: {question.questionText}</Title>
+      <lottie-player
+        autoplay
+        loop
+        mode="normal"
+        src={question.lottie}
+        style={{ height: 400 }}
+      />
+
       {!answer && // display all options if none has been answered
-      <div>
+      <ButtonContainer>
         {question.options.map((answerOption, index) => {
           return <Button type="button" key={index} onClick={() => handleAnswerButton(index)}>{answerOption}</Button>;
         })}
-      </div>}
-      {answer && (answer.answerIndex === answer.question.correctAnswerIndex ? <p>The answer is correct</p> : <p>Fail!</p>)}
-      {answer &&  <Button type="button" onClick={() => dispatch(quiz.actions.goToNextQuestion())}>Next question</Button>}
-      {/* {answer &&  <Button type="button" onClick={() => showSummary = True)}>Show your result</Button>} */}
+      </ButtonContainer>}
+      {answer && (answer.answerIndex === answer.question.correctAnswerIndex ? <h2>The answer is correct</h2> : <h2>Fail!</h2>)}
+      {(answer && !quizOver) && <Button type="button" onClick={() => dispatch(quiz.actions.goToNextQuestion())}>Next question</Button>}
+      <Progress>You are on question {question.id} of 5.</Progress>    
+      {quizOver && <Button type="button" onClick={() => setShowSummary(true)}>Show your result</Button>}
+      {showSummary && <Summary/>}
     </Container>
-  )   
+  )
 }
-      
