@@ -1,13 +1,31 @@
-# Redux quiz group project
+# Group Project Redux Quiz
 
-Replace this readme with your own information about your project.
+A quiz about Technigo teachers built with Redux. :thinking: :grey_question:
 
-Start by briefly describing the assignment in a sentence or two. Keep it short and to the point.
+## :brain: Learning objectives
+- what is global state
+- what is redux
+- how to use selectors to access redux state
+- how to use dispatch to trigger redux actions
+- practice working in a development team
 
-## The problem
+## :heavy_check_mark: Features
+- showing one question/page, implemented Next question button after the question has been answered
+- when the user selects an answer, they receive a notice if they were correct or not
+- keeping track of which question the user is currently on and how many are left
+- after answering all the questions, a summary screen is displayed telling how many questions were answered correctly
+- incorporated Lottie animations for every question and in the case of wrong/correctly answered question
 
-Describe how you approached to problem, and what tools and techniques you used to solve it. How did you plan? What technologies did you use? If you had more time, what would be next?
+## :chart_with_upwards_trend: Future improvements
+- highlighting the correct answer if the incorrect was chosen
+- giving score for each correct answer and deduct them for every false one
+- a countdown timer for answering the question -> marking answer as wrong when the time is up & question not yet answered
+- a timer showing how long it took to complete the quiz
 
-## View it live
+## :robot: Tech used
+- React
+- Styled components
+- Redux
 
-Every project should be deployed somewhere. Be sure to include the link to the deployed project so that the viewer can click around and see what it's all about.
+## :eyes: View it live
+https://project-quiz-elephants1.netlify.app/ 
